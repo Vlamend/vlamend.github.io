@@ -1,0 +1,111 @@
+---
+interface Props { title: string; description: string }
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline>
+      try {
+        var t = localStorage.getItem('tema');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @property --paper     { syntax: '<color>'; inherits: true; initial-value: #f7f9fc; }
+  @property --grid      { syntax: '<color>'; inherits: true; initial-value: #dbe6f3; }
+  @property --ink       { syntax: '<color>'; inherits: true; initial-value: #14213d; }
+  @property --blue      { syntax: '<color>'; inherits: true; initial-value: #1f3fbf; }
+  @property --margin    { syntax: '<color>'; inherits: true; initial-value: #e5484d; }
+  @property --card      { syntax: '<color>'; inherits: true; initial-value: #ffffff; }
+  @property --code      { syntax: '<color>'; inherits: true; initial-value: #1f3fbf; }
+  @property --btn-bg    { syntax: '<color>'; inherits: true; initial-value: #1f3fbf; }
+  @property --btn-text  { syntax: '<color>'; inherits: true; initial-value: #ffffff; }
+  @property --btn-hover { syntax: '<color>'; inherits: true; initial-value: #172f94; }
+  :root {
+    color-scheme: light;
+    --paper: #f7f9fc;
+    --grid: #dbe6f3;
+    --ink: #14213d;
+    --blue: #1f3fbf;
+    --margin: #e5484d;
+    --card: #ffffff;
+    --code: #1f3fbf;
+    --btn-bg: #1f3fbf;
+    --btn-text: #ffffff;
+    --btn-hover: #172f94;
+    --display: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif;
+    --body: 'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;
+  }
+  /* Tema scuro "lavagna": automatico dal sistema, oppure scelto col pulsante */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      color-scheme: dark;
+      --paper: #15211e;
+      --grid: #223630;
+      --ink: #eef2e8;
+      --blue: #cf61fa;
+      --margin: #ff7a7f;
+      --card: #1d2d28;
+      --code: #cd3df1;
+      --btn-bg: #cd3df1;
+      --btn-hover: #c0d4ff;
+    }
+  }
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+      --paper: #15211e;
+      --grid: #223630;
+      --ink: #eef2e8;
+      --blue: #cf61fa;
+      --margin: #ff7a7f;
+      --card: #1d2d28;
+      --code: #cd3df1;
+      --btn-bg: #cd3df1;
+      --btn-hover: #e8a5f5;
+  }
+  :root {
+  transition:
+    --paper 0.5s ease, --grid 0.5s ease, --ink 0.5s ease, --blue 0.5s ease,
+    --margin 0.5s ease, --card 0.5s ease, --code 0.5s ease,
+    --btn-bg 0.5s ease, --btn-hover 0.5s ease;
+  }
+  @media (prefers-reduced-motion: reduce) { :root { transition: none; } }
+  * { 
+    box-sizing: border-box;
+     }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    color: var(--ink);
+    font: 1.0625rem/1.6 var(--body);
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -0.02em; margin: 0; }
+  a { color: var(--blue); }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+</style>
