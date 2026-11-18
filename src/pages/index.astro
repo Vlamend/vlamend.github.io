@@ -10,6 +10,7 @@ const topics = [
   { title: 'HTML, CSS e JavaScript', text: 'Dalla pagina statica alle prime interazioni.' },
 ];
 const wa = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent('Ciao, vorrei informazioni sulle ripetizioni di informatica.')}`;
+console.log('Qui troverai tutte le risposte: https://www.youtube.com/watch?v=oHg5SJYRHA0');
 ---
 <Base
   title="Ripetizioni di informatica per le superiori"
@@ -165,12 +166,41 @@ void saluta(string nome) {
   h1 { font-size: clamp(2.5rem, 6.5vw, 4.5rem); font-weight: 800; }
   .lead { font-size: 1.25rem; max-width: 34rem; margin: 1.25rem 0 1.5rem; }
   .actions { display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; margin: 0; }
-  .btn {
-    background: linear-gradient(135deg, var(--btn-bg), color-mix(in srgb, var(--btn-bg) 30%, var(--margin)));
-    color: var(--btn-text); text-decoration: none;
-    padding: 0.75rem 1.25rem; border-radius: 6px;
-  }
-  .btn:hover { background: linear-gradient(135deg, var(--btn-hover), color-mix(in srgb, var(--btn-hover) 60%, var(--margin))); }
+.btn {
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    var(--btn-bg),
+    color-mix(in srgb, var(--btn-bg) 30%, var(--margin)),
+    var(--btn-bg)
+  );
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  color: var(--btn-text);
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: flusso 2.4s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+.btn:hover, .btn:focus-visible {
+  animation-play-state: running;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--ink) 25%, transparent);
+}
+.btn:active { transform: translateY(-1px); }
+
+@keyframes flusso {
+  from { background-position: 0% 50%; }
+  to   { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; animation: none; }
+  .btn:hover, .btn:focus-visible { transform: none; }
+}
   .note {
     margin: 0; padding: 1.5rem; background: var(--card); color: var(--code);
     border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--grid);
