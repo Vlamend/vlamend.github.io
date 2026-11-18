@@ -44,25 +44,22 @@ const { title, description } = Astro.props;
   @property --paper     { syntax: '<color>'; inherits: true; initial-value: #f7f9fc; }
   @property --grid      { syntax: '<color>'; inherits: true; initial-value: #dbe6f3; }
   @property --ink       { syntax: '<color>'; inherits: true; initial-value: #14213d; }
-  @property --blue      { syntax: '<color>'; inherits: true; initial-value: #1f3fbf; }
   @property --margin    { syntax: '<color>'; inherits: true; initial-value: #e5484d; }
   @property --card      { syntax: '<color>'; inherits: true; initial-value: #ffffff; }
   @property --code      { syntax: '<color>'; inherits: true; initial-value: #1f3fbf; }
   @property --btn-bg    { syntax: '<color>'; inherits: true; initial-value: #1f3fbf; }
   @property --btn-text  { syntax: '<color>'; inherits: true; initial-value: #ffffff; }
-  @property --btn-hover { syntax: '<color>'; inherits: true; initial-value: #172f94; }
+
   :root {
     color-scheme: light;
     --paper: #f7f9fc;
     --grid: #dbe6f3;
     --ink: #14213d;
-    --blue: #1f3fbf;
     --margin: #e5484d;
     --card: #ffffff;
     --code: #1f3fbf;
     --btn-bg: #1f3fbf;
     --btn-text: #ffffff;
-    --btn-hover: #172f94;
     --display: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif;
     --body: 'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;
   }
@@ -73,12 +70,10 @@ const { title, description } = Astro.props;
       --paper: #15211e;
       --grid: #223630;
       --ink: #eef2e8;
-      --blue: #cf61fa;
       --margin: #ff9966;
       --card: #1d2d28;
       --code: #cd3df1;
-      --btn-bg: #cd3df1;
-      --btn-hover: #c0d4ff;
+      --btn-bg: #8300af;
     }
   }
   :root[data-theme='dark'] {
@@ -86,18 +81,16 @@ const { title, description } = Astro.props;
       --paper: #15211e;
       --grid: #223630;
       --ink: #eef2e8;
-      --blue: #cf61fa;
       --margin: #ff9966;
       --card: #1d2d28;
-      --code: #cd3df1;
-      --btn-bg: #cd3df1;
-      --btn-hover: #e8a5f5;
+      --code: #9900bf;
+      --btn-bg: #8300af;
   }
   :root {
   transition:
-    --paper 0.5s ease, --grid 0.5s ease, --ink 0.5s ease, --blue 0.5s ease,
+    --paper 0.5s ease, --grid 0.5s ease, --ink 0.5s ease,
     --margin 0.5s ease, --card 0.5s ease, --code 0.5s ease,
-    --btn-bg 0.5s ease, --btn-hover 0.5s ease;
+    --btn-bg 0.5s ease;
   }
   @media (prefers-reduced-motion: reduce) { :root { transition: none; } }
   * { 
@@ -117,6 +110,4 @@ const { title, description } = Astro.props;
     background-size: 28px 28px;
   }
   h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -0.02em; margin: 0; }
-  a { color: var(--blue); }
-  :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
 </style>
