@@ -10,7 +10,7 @@ const topics = [
   { title: 'HTML, CSS e JavaScript', text: 'Dalla pagina statica alle prime interazioni.' },
 ];
 const wa = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent('Ciao, vorrei informazioni sulle ripetizioni di informatica.')}`;
-console.log('Qui troverai tutte le risposte: https://www.youtube.com/watch?v=oHg5SJYRHA0');
+
 ---
 <Base
   title="Ripetizioni di informatica per le superiori"
@@ -77,8 +77,8 @@ void saluta(string nome) {
   return "Ciao, " + nome;
 }`
   ];
+  console.log('Qui troverai tutte le risposte: https://www.youtube.com/watch?v=oHg5SJYRHA0');
   var el = document.getElementById('codeCiao');
-  console.log(el);
   if (el) el.textContent = esempi[Math.floor(Math.random() * esempi.length)];
 </script>
     </section>
